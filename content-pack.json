@@ -1,0 +1,152 @@
+{
+  "schema": "demo-content-pack/1",
+  "id": "obo-lab",
+  "title": "OBO Delegation Inspector LAB",
+  "version": "0.1.0",
+  "demo": {
+    "id": "obo-lab",
+    "name": "OBO Delegation Inspector LAB",
+    "catalog": "O1",
+    "baseUrl": "http://localhost:7560",
+    "doctor": "/api/health",
+    "tags": [
+      "obo",
+      "delegation",
+      "token-exchange",
+      "act-claim",
+      "rfc8693",
+      "agent-identity",
+      "mock",
+      "real"
+    ]
+  },
+  "glossary": [
+    {
+      "id": "obo",
+      "term": "On-behalf-of (OBO)",
+      "definition": "An agent acts for a signed-in person: the person's identity is kept (sub), the agent is recorded (act), and everything else narrows. Delegation, not impersonation."
+    },
+    {
+      "id": "act",
+      "term": "act claim",
+      "definition": "RFC 8693: names the client that actually performed the exchange on the subject's behalf. The downstream requires it; a token without act is a person token, not a delegation."
+    },
+    {
+      "id": "subject-token",
+      "term": "Subject token",
+      "definition": "The signed-in person's access token, used as the subject_token in the exchange. The agent never receives it."
+    },
+    {
+      "id": "actor-token",
+      "term": "Actor token",
+      "definition": "The agent's own client-credentials token, used as the actor_token. It proves who the agent is without borrowing the person's identity."
+    },
+    {
+      "id": "delegation",
+      "term": "Delegation vs impersonation",
+      "definition": "Impersonation would change sub. Delegation keeps sub and adds act: every downstream call can say who the person is AND which agent acted."
+    },
+    {
+      "id": "narrowing",
+      "term": "Scope narrowing",
+      "definition": "The delegated token carries only the scopes the task needs, never the person's full set. The exchange cannot widen scope."
+    },
+    {
+      "id": "leak-scan",
+      "term": "Leak scan",
+      "definition": "Everything a page would hand to a model is scanned for token text. Tokens live between the app, the issuer and the API; the model reasons on results only."
+    }
+  ],
+  "cards": [
+    {
+      "id": "step-1",
+      "label": "You are signed in",
+      "description": "You are signed in",
+      "group": "try-it",
+      "action": {
+        "type": "route",
+        "href": "/#/run"
+      }
+    },
+    {
+      "id": "step-2",
+      "label": "Agent gets its own identity",
+      "description": "Agent gets its own identity",
+      "group": "try-it",
+      "action": {
+        "type": "route",
+        "href": "/#/run"
+      }
+    },
+    {
+      "id": "step-3",
+      "label": "Token exchange (RFC 8693)",
+      "description": "Token exchange (RFC 8693)",
+      "group": "try-it",
+      "action": {
+        "type": "route",
+        "href": "/#/run"
+      }
+    },
+    {
+      "id": "step-4",
+      "label": "Delegated token: what changed",
+      "description": "Delegated token: what changed",
+      "group": "try-it",
+      "action": {
+        "type": "route",
+        "href": "/#/run"
+      }
+    },
+    {
+      "id": "step-5",
+      "label": "Downstream accepts the delegated token",
+      "description": "Downstream accepts the delegated token",
+      "group": "try-it",
+      "action": {
+        "type": "route",
+        "href": "/#/run"
+      }
+    },
+    {
+      "id": "step-6",
+      "label": "Downstream refuses your own token",
+      "description": "Downstream refuses your own token",
+      "group": "try-it",
+      "action": {
+        "type": "route",
+        "href": "/#/run"
+      }
+    },
+    {
+      "id": "step-7",
+      "label": "No token reached the model",
+      "description": "No token reached the model",
+      "group": "try-it",
+      "action": {
+        "type": "route",
+        "href": "/#/run"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "8693",
+      "title": "RFC 8693 OAuth 2.0 Token Exchange",
+      "url": "https://www.rfc-editor.org/rfc/8693",
+      "kind": "standard",
+      "use": "the exchange and the act claim",
+      "status": "read",
+      "checked": "2026-11-03"
+    },
+    {
+      "id": "9449",
+      "title": "RFC 9449 DPoP",
+      "url": "https://www.rfc-editor.org/rfc/9449",
+      "kind": "standard",
+      "use": "what sender-constrained tokens add on top (covered by the stolen-token lab)",
+      "status": "read",
+      "checked": "2026-11-03"
+    }
+  ]
+}
