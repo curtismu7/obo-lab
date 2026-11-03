@@ -10,8 +10,16 @@
       "healthPath": "/api/health",
       "composeFile": "obo-lab/docker-compose.yml",
       "composeOverlays": [],
-      "tags": ["agent-identity", "token-exchange", "authorization-policy", "simulated"],
+      "tags": [
+        "agent-identity",
+        "token-exchange",
+        "authorization-policy",
+        "simulated"
+      ],
       "notes": "Host-run: ./scripts/run.sh (port 7560). Mock: no tenant, no credentials. Real: PINGONE_* + OBO_LAB_* in ~/Development/.env (owner-set). Docker: HOST_PORT=7560 docker compose up --build -d (published on 127.0.0.1 only). composeFile is relative to the demo root."
     }
+  ],
+  "pingProducts": [
+    "pingone"
   ]
 }
