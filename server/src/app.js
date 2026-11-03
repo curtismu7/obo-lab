@@ -8,6 +8,7 @@ import { hostCheck, sameOriginWrites } from './safety.js';
 import { createHealth } from './health.js';
 import { createWorld, personaOf, agentOf, exchangerOf, downstreamOf, jwtDecode } from './obo.js';
 import { createMode, MODES } from './mode.js';
+import { DIAGRAM_NAMES, loadDiagram } from './diagramData.js';
 import { realRun } from './realPingOne.js';
 import { workspaceId } from './workspace.js';
 
@@ -38,6 +39,11 @@ export function createApp({ health = createHealth(), mode = createMode(), world 
     return res.json({ ...mode.info(), banner: BANNER(mode.source()) });
   });
 
+  api.get('/diagram', (req, res) => {
+    res.set('Cache-Control', 'no-store');
+    const name = DIAGRAM_NAMES.includes(req.query.name) ? req.query.name : DIAGRAM_NAMES[0];
+    return res.json(loadDiagram(name));
+  });
   api.get('/catalog', (_req, res) => res.json({
     banner: BANNER(mode.source()), source: mode.source(),
     persona: personaOf(), agent: agentOf(), exchanger: exchangerOf(),

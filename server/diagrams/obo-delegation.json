@@ -1,0 +1,24 @@
+{
+  "schema": "diagram-studio/1",
+  "id": "obo-delegation",
+  "title": "OBO delegation: the person's token becomes the agent's",
+  "lede": "RFC 8693 token exchange: sub stays the person, act names the agent, aud and scope narrow to this one call.",
+  "groups": {
+    "person": { "label": "Person", "color": "dark" },
+    "agent": { "label": "AI agent (our code)", "color": "grey" },
+    "issuer": { "label": "Ping product: authorization server", "color": "red" },
+    "api": { "label": "Downstream API (resource server)", "color": "dark" }
+  },
+  "nodes": [
+    { "id": "person", "group": "person", "label": "{{cast.personName}}", "sub": ["signed in, holds the raw token"], "x": 0, "y": 0 },
+    { "id": "agent", "group": "agent", "label": "AI agent", "sub": ["own identity, acts for the person"], "x": 3, "y": 0 },
+    { "id": "issuer", "group": "issuer", "label": "Token exchange", "sub": ["sub kept, act added, aud+scope narrowed"], "x": 6, "y": 0 },
+    { "id": "api", "group": "api", "label": "Downstream API", "sub": ["accepts delegated, refuses raw"], "x": 9, "y": 0 }
+  ],
+  "edges": [
+    { "id": "e1", "from": "person", "to": "agent", "label": "asks (token in session)" },
+    { "id": "e2", "from": "agent", "to": "issuer", "label": "RFC 8693 exchange" },
+    { "id": "e3", "from": "issuer", "to": "agent", "label": "delegated token" },
+    { "id": "e4", "from": "agent", "to": "api", "label": "call with delegated token" }
+  ]
+}

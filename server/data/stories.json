@@ -1,0 +1,7 @@
+{
+  "verticals": {
+    "banking": { "brand": "{{cast.brand}}", "person": "{{cast.personName}}", "captureStory": "{{cast.personName}} asks {{cast.agentId}} to check a balance. The agent exchanges the person's token for its own delegated token (RFC 8693, sub kept, act added). The downstream API accepts the delegated token and refuses the person's original one." },
+    "healthcare": { "brand": "{{cast.brand}} Health", "person": "{{cast.personName}}", "captureStory": "{{cast.personName}} asks {{cast.agentId}} to read an appointment list. The delegated token carries act, so the audit trail shows who acted for whom. The person's raw token is refused downstream." },
+    "retail": { "brand": "{{cast.brand}} Retail", "person": "{{cast.personName}}", "captureStory": "{{cast.personName}} asks {{cast.agentId}} to pull an order history. Aud/scope are narrowed on the delegated token: the agent can only do what this one call needs, on this one API." }
+  }
+}

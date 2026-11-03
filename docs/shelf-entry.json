@@ -3,7 +3,7 @@
     {
       "id": "obo-lab",
       "name": "OBO Delegation Inspector LAB",
-      "catalogId": "O1",
+      "catalogId": "D111",
       "kind": "Demo",
       "description": "Seven steps of on-behalf-of delegation: the person's token and the agent's client-credentials token go into an RFC 8693 exchange, and one delegated token comes out — sub kept, act added, aud and scope narrowed. The downstream accepts the delegated token and refuses the person's own. Mock engine or your own PingOne tenant (Mock/Real toggle).",
       "url": "http://localhost:7560",

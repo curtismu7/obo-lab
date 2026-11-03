@@ -6,7 +6,7 @@
   "demo": {
     "id": "obo-lab",
     "name": "OBO Delegation Inspector LAB",
-    "catalog": "O1",
+    "catalog": "D111",
     "baseUrl": "http://localhost:7560",
     "doctor": "/api/health",
     "tags": [

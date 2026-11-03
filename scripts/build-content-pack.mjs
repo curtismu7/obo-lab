@@ -14,7 +14,7 @@ export function buildPack() {
     id: 'obo-lab',
     title: 'OBO Delegation Inspector LAB',
     version,
-    demo: { id: 'obo-lab', name: 'OBO Delegation Inspector LAB', catalog: 'O1', baseUrl: 'http://localhost:7560', doctor: '/api/health', tags: ['obo', 'delegation', 'token-exchange', 'act-claim', 'rfc8693', 'agent-identity', 'mock', 'real'] },
+    demo: { id: 'obo-lab', name: 'OBO Delegation Inspector LAB', catalog: 'D111', baseUrl: 'http://localhost:7560', doctor: '/api/health', tags: ['obo', 'delegation', 'token-exchange', 'act-claim', 'rfc8693', 'agent-identity', 'mock', 'real'] },
     glossary: [
       { id: 'obo', term: 'On-behalf-of (OBO)', definition: 'An agent acts for a signed-in person: the person\'s identity is kept (sub), the agent is recorded (act), and everything else narrows. Delegation, not impersonation.' },
       { id: 'act', term: 'act claim', definition: 'RFC 8693: names the client that actually performed the exchange on the subject\'s behalf. The downstream requires it; a token without act is a person token, not a delegation.' },
