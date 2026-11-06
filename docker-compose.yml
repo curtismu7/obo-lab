@@ -11,7 +11,7 @@ services:
     environment:
       PORT: "7560"
       OBOL_BIND: 0.0.0.0
-      LAB_ALLOWED_HOSTS: ${LAB_ALLOWED_HOSTS:-}
+      LAB_ALLOWED_HOSTS: ${LAB_ALLOWED_HOSTS:-obo-lab.local.ping-devops.com}
     read_only: true
     cap_drop: [ALL]
     security_opt: ["no-new-privileges:true"]
