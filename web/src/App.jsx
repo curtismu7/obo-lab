@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { getCatalog, getInfo, requestModeSwitch, resetServer, runObo, revokeAgent } from "./lib/api.js";
 import ModeToggle from "./components/ModeToggle.jsx";
+import ShelfLink from "./components/ShelfLink.jsx";
 import RunTab from "./tabs/RunTab.jsx";
 
 export const TABS = [["run", "Run"], ["wire", "Wire"]];
@@ -87,6 +88,7 @@ export default function App() {
         <div className="head">
           <h1 className="head__title">OBO Delegation Inspector LAB</h1>
           <div className="head__tools">
+            <ShelfLink />
             <ModeToggle info={info} onSelect={onMode} />
             <label className="inline">Theme
               <select value={theme} onChange={(e) => { setTheme(e.target.value); write("obol.theme", e.target.value); }} data-testid="theme">
