@@ -11,6 +11,7 @@ import { createMode, MODES } from './mode.js';
 import { DIAGRAM_NAMES, loadDiagram } from './diagramData.js';
 import { realRun } from './realPingOne.js';
 import { workspaceId } from './workspace.js';
+import { shelfInfo } from './shelfLink.js';
 
 const WEB_DIST = process.env.WEB_DIST || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../web/dist');
 const bad = (res, message, status = 400) => res.status(status).json({ error: status === 404 ? 'not_found' : 'bad_request', message });
@@ -18,7 +19,7 @@ export const BANNER = (source) => source === 'real'
   ? 'REAL mode: every step runs against YOUR PingOne tenant with the owner\'s Worker credentials. Tokens are shown because you own the run; the model never receives one. The Worker secret is a hash only.'
   : 'MOCK mode. SIMULATED: in-process mock issuer, mock exchanger and mock downstream. No tenant, no outbound network. Tokens are mock and labelled.';
 
-export function createApp({ health = createHealth(), mode = createMode(), world = createWorld() } = {}) {
+export function createApp({ health = createHealth(), mode = createMode(), world = createWorld(), env = process.env } = {}) {
   const app = express();
   app.disable('x-powered-by');
   app.use(hostCheck);
@@ -28,6 +29,7 @@ export function createApp({ health = createHealth(), mode = createMode(), world 
   const api = express.Router();
   api.use(express.json({ limit: '8kb' }));
   api.use('/health', health.router);
+  api.get('/shelf', (_req, res) => { res.set('Cache-Control', 'no-store'); res.json(shelfInfo(env)); });
 
   api.get('/info', (_req, res) => { res.set('Cache-Control', 'no-store'); res.json({ ...mode.info(), banner: BANNER(mode.source()), epoch: world.state.runs.length }); });
   // Rule 19: POST /api/mode with exactly {"source": "mock"|"real"}. Real unconfigured -> 409 with the how-to.
